@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import Campaigns from "./components/Campaigns";
+import Categories from "./components/Categories";
+import Favorites from "./components/Favorites";
+import Footer from "./components/Footer";
+import HeroSection from "./components/HeroSection";
+import MobileApp from "./components/MobileApp";
+import Header from "./components/Header";
+import Cards from "./components/Cards";
+import { useWindowWidth } from '@react-hook/window-size'
 
 function App() {
+  const width = useWindowWidth()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header/>
+      {width < 640 && <Campaigns />}
+      <HeroSection />
+      <Categories />
+      <div className="bg-gray-100">
+        <div className="grid gap-y-6 py-6 pb-14 container mx-auto">
+          {width > 640 && <Campaigns />}
+          <Favorites />
+          <MobileApp />
+          <Cards />
+        </div>
+      </div>
+      <Footer />
+    </>
   );
 }
 
